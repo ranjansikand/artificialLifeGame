@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4d476ce2f680e488086b486b99b067, type: 3}
+  m_Name: Bat
+  m_EditorClassIdentifier: 
+  _monsterName: Vampire Bat
+  _description: They're fast and have great eyesight, but die easily
+  _flavorText: 'Note: Switch all bats to a low-calorie diet'
+  _monsterPrefab: {fileID: 3551107155790821001, guid: b5e2d68ca6aaff64881b0345797ce247, type: 3}
+  _health: 2
+  _damage: 4
+  _movementSpeed: 8
+  _sightRange: 8
+  _attackRange: 1.5
+  _followDistance: 5
+  _cooldown: 6
+  _spawnTime: 2
+  _layer: 10

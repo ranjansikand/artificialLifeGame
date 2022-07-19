@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4d476ce2f680e488086b486b99b067, type: 3}
+  m_Name: Bee
+  m_EditorClassIdentifier: 
+  _monsterName: Hunty-Bee
+  _description: Very fragile but easy to spawn
+  _flavorText: HUGE BEES. HUGE.
+  _monsterPrefab: {fileID: 3828989573956910740, guid: d0270ddb4f966ea4486df875b84e05e3, type: 3}
+  _health: 1
+  _damage: 2
+  _movementSpeed: 6
+  _sightRange: 4
+  _attackRange: 1.5
+  _followDistance: 4
+  _cooldown: 3
+  _spawnTime: 2
+  _layer: 10

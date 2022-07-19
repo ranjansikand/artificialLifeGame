@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4d476ce2f680e488086b486b99b067, type: 3}
+  m_Name: Cactus
+  m_EditorClassIdentifier: 
+  _monsterName: Cactus
+  _description: Their prickly skin protects them from incoming damage
+  _flavorText: Unfortunately, they really like to cuddle
+  _monsterPrefab: {fileID: 5396274005761515676, guid: 590ee709b7b0e574981062701b910e6e, type: 3}
+  _health: 8
+  _damage: 2
+  _movementSpeed: 2
+  _sightRange: 4
+  _attackRange: 1.5
+  _followDistance: 2
+  _cooldown: 10
+  _spawnTime: 2
+  _layer: 10
