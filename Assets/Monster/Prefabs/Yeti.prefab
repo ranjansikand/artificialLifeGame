@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 8735943555691702036}
   - component: {fileID: -4809713700946344973}
   - component: {fileID: -3030699226144454549}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yeti
   m_TagString: Untagged
   m_Icon: {fileID: 0}

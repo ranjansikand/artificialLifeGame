@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 1068044860099076673}
   - component: {fileID: 6670909427012542807}
   - component: {fileID: -2654191656394257296}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bee
   m_TagString: Untagged
   m_Icon: {fileID: 0}

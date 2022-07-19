@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: -1668151902172685380}
   - component: {fileID: -485885512398416647}
   - component: {fileID: 7145703982646563909}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cyclops
   m_TagString: Untagged
   m_Icon: {fileID: 0}

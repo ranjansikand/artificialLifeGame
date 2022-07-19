@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     private PlayerInput _playerInput;
 
     private CharacterController _characterController;
     private Animator _animator;
 
+    // Health
+    int _currentHealth = 4;
 
     // Movement
     bool _canMove = true;
@@ -60,7 +62,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == 9) {
             _nearBlueprint = true;
             _blueprint = other.gameObject.GetComponent<Blueprint>();
-            Debug.Log("Blueprint " + _blueprint + " found with " + _blueprint.Data);
         }
     }
 
@@ -140,7 +141,9 @@ public class PlayerController : MonoBehaviour
 
     void Select(int number) {
         number--;
-        _selectedMonster = number; 
+        _selectedMonster = number;
+        Debug.Log(number);
+        Slots.instance.SelectSlot(number);
     }
 
     // Coroutines
@@ -169,7 +172,20 @@ public class PlayerController : MonoBehaviour
 
         // Deactivate monster
         _monsterAvailable[monster] = false;
+        // UI representation of cooldown
+        Slots.instance.CooldownSlot(monster, _storedMonsters[monster]._cooldown);
         yield return new WaitForSeconds(_storedMonsters[monster]._cooldown);
         _monsterAvailable[monster] = true;
+    }
+
+    public bool Alive() {
+        return _currentHealth > 0;
+    }
+
+    public void Damage(float damage) {
+        if (!_canMove) return;
+        _currentHealth -= 1;
+        
+        if (_canMove && _currentHealth <= 0) _canMove = false;
     }
 }

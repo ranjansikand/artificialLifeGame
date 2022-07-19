@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: -3303720835934536234}
   - component: {fileID: -2610556423930766988}
   - component: {fileID: 7989961873262473074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Panda
   m_TagString: Untagged
   m_Icon: {fileID: 0}

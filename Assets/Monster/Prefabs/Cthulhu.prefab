@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: -2603190159514664449}
   - component: {fileID: -6679848193050678339}
   - component: {fileID: 7185234647263898951}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cthulhu
   m_TagString: Untagged
   m_Icon: {fileID: 0}

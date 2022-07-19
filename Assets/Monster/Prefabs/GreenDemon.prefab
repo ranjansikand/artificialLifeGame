@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 7967345830924072665}
   - component: {fileID: 4911186724408935438}
   - component: {fileID: 1563880497407713056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GreenDemon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -36,7 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
+     <Compile Include="Assets\VFX\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -269,7 +269,7 @@
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="JMOAssets_CartoonFXFreeWelcome">
-        <HintPath>C:/Users/ranja/Desktop/Unity Projects/ArtificialLifeGame/Assets/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll</HintPath>
+        <HintPath>C:/Users/ranja/Desktop/Unity Projects/ArtificialLifeGame/Assets/VFX/Editor/JMOAssets_CartoonFXFreeWelcome.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
         <HintPath>C:/Users/ranja/Desktop/Unity Projects/ArtificialLifeGame/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>

@@ -37,23 +37,26 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Player\PlayerInput.cs" />
+     <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
+     <Compile Include="Assets\Scripts\BouncingItem.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\IDamageable.cs" />
-     <Compile Include="Assets\Scripts\MonsterController.cs" />
-     <Compile Include="Assets\Scripts\MonsterData.cs" />
-     <Compile Include="Assets\Scripts\Dummy.cs" />
      <Compile Include="Assets\Scripts\Blueprint.cs" />
-     <Compile Include="Assets\Scripts\BouncingItem.cs" />
-     <Compile Include="Assets\Scripts\ItemGenerator.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
      <Compile Include="Assets\Scripts\UI\Slots.cs" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
-     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Free.txt" />
-     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
-     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFXM_MobileParticleAdd_Alpha8.shader" />
+     <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
+     <Compile Include="Assets\Scripts\Dummy.cs" />
+     <Compile Include="Assets\Scripts\ItemGenerator.cs" />
+     <Compile Include="Assets\Scripts\MonsterController.cs" />
+     <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
+     <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
+     <Compile Include="Assets\Scripts\UI\MonsterSlot.cs" />
+     <Compile Include="Assets\Scripts\MonsterData.cs" />
+     <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\EnemyData.cs" />
+     <None Include="Assets\VFX\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
+     <None Include="Assets\VFX\Cartoon FX\CartoonFX Free.txt" />
+     <None Include="Assets\VFX\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
+     <None Include="Assets\VFX\Cartoon FX\Shaders\CFXM_MobileParticleAdd_Alpha8.shader" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -662,6 +665,10 @@
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{c31af67b-608b-5880-7f3f-e3f46a14f7e0}</Project>
       <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
+      <Project>{e24df90b-4a6e-b0df-ddd1-4d7a7ca8d190}</Project>
+      <Name>Unity.2D.Sprite.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

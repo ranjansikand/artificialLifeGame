@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: -6793952312847549994}
   - component: {fileID: 345501047465031229}
   - component: {fileID: -551911481630629686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: YellowDragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

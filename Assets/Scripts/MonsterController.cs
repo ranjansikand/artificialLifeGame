@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MonsterController : MonoBehaviour
+public class MonsterController : MonoBehaviour, IDamageable
 {
     [SerializeField] MonsterData _data;
 
@@ -18,6 +18,7 @@ public class MonsterController : MonoBehaviour
 
     int _attackHash;
     int _walkHash;
+    int _deadHash;
 
     WaitForSeconds _delay = new WaitForSeconds(0.1f);
     bool _enemyDetected = false;
@@ -37,12 +38,13 @@ public class MonsterController : MonoBehaviour
 
         _attackHash = Animator.StringToHash("Attack");
         _walkHash = Animator.StringToHash("Walk");
+        _deadHash = Animator.StringToHash("Dead");
 
         StartCoroutine(CheckDestination());
     }
 
     void Update() {
-        TurnToTarget();
+        if (_target != null) TurnToTarget();
     }
 
     IEnumerator CheckDestination() {
@@ -51,7 +53,7 @@ public class MonsterController : MonoBehaviour
             if (!_enemyDetected) AcquireTarget();
 
             var dist = Vector3.Distance(transform.position, _target.transform.position);
-            _enemyDetected = !(_receiver == null) && _receiver.Alive();
+            _enemyDetected = _receiver != null && _receiver.Alive();
 
             // Animate Object
             _animator.SetBool(_walkHash, dist > _destinationRadius * 1.1f);
@@ -97,8 +99,28 @@ public class MonsterController : MonoBehaviour
         transform.rotation = Quaternion.Lerp (transform.rotation, targetRotation, str);
     }
 
+    // Combat Functions
+
     // Called from animation event
     public void Attack() {
         _receiver.Damage(_data._damage);
     }
+
+    public void Damage(float damage) {
+        if (!Alive()) return;
+
+        _currentHealth -= damage;
+
+        if (!Alive()) {
+            _agent.enabled = false;
+            _animator.SetBool(_deadHash, true);
+            Invoke(nameof(DestroyThis), 1.5f);
+        }
+    }
+
+    public bool Alive() {
+        return _currentHealth > 0;
+    }
+
+    private void DestroyThis() { Destroy(gameObject); }
 }
