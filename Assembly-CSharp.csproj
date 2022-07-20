@@ -49,10 +49,13 @@
      <Compile Include="Assets\Scripts\MonsterController.cs" />
      <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
      <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
-     <Compile Include="Assets\Scripts\UI\MonsterSlot.cs" />
-     <Compile Include="Assets\Scripts\MonsterData.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\UI\MonsterSlot.cs" />
      <Compile Include="Assets\Scripts\EnemyData.cs" />
+     <Compile Include="Assets\Scripts\MonsterData.cs" />
+     <Compile Include="Assets\Scripts\UI\Healthbar.cs" />
+     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
+     <Compile Include="Assets\Scripts\UI\PlayerHearts.cs" />
      <None Include="Assets\VFX\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
      <None Include="Assets\VFX\Cartoon FX\CartoonFX Free.txt" />
      <None Include="Assets\VFX\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
@@ -650,6 +653,10 @@
       <Project>{92066acf-e6f3-936b-eada-eec1d787cbc6}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
+      <Project>{e24df90b-4a6e-b0df-ddd1-4d7a7ca8d190}</Project>
+      <Name>Unity.2D.Sprite.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{d76fb741-3082-c438-5756-e74038f298cc}</Project>
       <Name>UnityEditor.UI</Name>
@@ -665,10 +672,6 @@
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{c31af67b-608b-5880-7f3f-e3f46a14f7e0}</Project>
       <Name>UnityEngine.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
-      <Project>{e24df90b-4a6e-b0df-ddd1-4d7a7ca8d190}</Project>
-      <Name>Unity.2D.Sprite.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

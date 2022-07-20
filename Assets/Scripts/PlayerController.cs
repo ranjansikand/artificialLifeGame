@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     Blueprint _blueprint;
     int _selectedMonster = 0;
     
-    [SerializeField] MonsterData[] _storedMonsters = new MonsterData[4];
+    MonsterData[] _storedMonsters = new MonsterData[4];
 
     bool[] _monsterAvailable = { true, true, true, true };
     int[] _usesLeft = { 0, 0, 0, 0 };
@@ -185,7 +185,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void Damage(float damage) {
         if (!_canMove) return;
         _currentHealth -= 1;
+        PlayerHearts.instance.LoseHealth();
         
-        if (_canMove && _currentHealth <= 0) _canMove = false;
+        if (_canMove && _currentHealth <= 0) {
+            _canMove = false;
+            _animator.SetBool("Dead", true);
+        }
     }
 }

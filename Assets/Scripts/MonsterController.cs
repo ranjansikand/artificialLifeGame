@@ -9,16 +9,17 @@ public class MonsterController : MonoBehaviour, IDamageable
 
     NavMeshAgent _agent;
     Animator _animator;
+    Healthbar _healthbar;
 
     GameObject _target;
-    GameObject _player;
+    static GameObject _player;
     IDamageable _receiver;
 
     float _currentHealth;
 
-    int _attackHash;
-    int _walkHash;
-    int _deadHash;
+    static int _attackHash = 0;
+    static int _walkHash;
+    static int _deadHash;
 
     WaitForSeconds _delay = new WaitForSeconds(0.1f);
     bool _enemyDetected = false;
@@ -29,18 +30,25 @@ public class MonsterController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Awake()
     {
-        _player = GameObject.FindWithTag("Player");
+        if (_player == null) _player = GameObject.FindWithTag("Player");
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+        _healthbar = GetComponentInChildren<Healthbar>();
 
         _currentHealth = _data._health;
         _agent.speed = _data._movementSpeed;
 
-        _attackHash = Animator.StringToHash("Attack");
-        _walkHash = Animator.StringToHash("Walk");
-        _deadHash = Animator.StringToHash("Dead");
+        if (_attackHash == 0) {
+            _attackHash = Animator.StringToHash("Attack");
+            _walkHash = Animator.StringToHash("Walk");
+            _deadHash = Animator.StringToHash("Dead");
+        }
 
         StartCoroutine(CheckDestination());
+    }
+
+    void Start() {
+        _healthbar?.InitializeHealthbar(_currentHealth);
     }
 
     void Update() {
@@ -77,7 +85,6 @@ public class MonsterController : MonoBehaviour, IDamageable
             a, b, _data._sightRange, targetsBuffer, _data.LayerMask);
         if (hits > 0) {
             for (int i = 0; i < hits; i++) {
-                Debug.Log("Spotted!");
                 _target = targetsBuffer[i].GetComponent<Collider>().gameObject;
                 _destinationRadius = _data._attackRange;
                 _receiver = _target.gameObject.GetComponent<IDamageable>();
@@ -110,6 +117,7 @@ public class MonsterController : MonoBehaviour, IDamageable
         if (!Alive()) return;
 
         _currentHealth -= damage;
+        _healthbar?.UpdateHealthbar(_currentHealth);
 
         if (!Alive()) {
             _agent.enabled = false;

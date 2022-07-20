@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private Animator _animator;
     private NavMeshAgent _agent;
+    private Healthbar _healthbar;
 
     GameObject _target;
     IDamageable _receiver;
@@ -23,20 +24,26 @@ public class Enemy : MonoBehaviour, IDamageable
     Collider[] targetsBuffer = new Collider[100];
     float _turnSpeed = 2f;
 
-    int _attackHash;
-    int _walkHash;
-    int _deadHash;
+    static int _attackHash = 0;
+    static int _walkHash;
+    static int _deadHash;
 
     private void Awake() {
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
+        _healthbar = GetComponentInChildren<Healthbar>();
 
-        _attackHash = Animator.StringToHash("Attack");
-        _walkHash = Animator.StringToHash("Walk");
-        _deadHash = Animator.StringToHash("Dead");
+        if (_attackHash == 0) {
+            _attackHash = Animator.StringToHash("Attack");
+            _walkHash = Animator.StringToHash("Walk");
+            _deadHash = Animator.StringToHash("Dead");
+        }
+    }
 
+    private void Start() {
         _currentHealth = _data.Health;
         _agent.speed = _data.Speed;
+        _healthbar?.InitializeHealthbar(_currentHealth);
 
         StartCoroutine(EnemyBehavior());
     }
@@ -90,7 +97,6 @@ public class Enemy : MonoBehaviour, IDamageable
             a, b, 5, targetsBuffer, _data.LayerMask);
         if (hits > 0) {
             for (int i = 0; i < hits; i++) {
-                Debug.Log("Spotted!");
                 _target = targetsBuffer[i].GetComponent<Collider>().gameObject;
                 _receiver = _target.gameObject.GetComponent<IDamageable>();
                 _enemyDetected = true;
@@ -118,6 +124,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!Alive()) return;
 
         _currentHealth -= damage;
+        _healthbar?.UpdateHealthbar(_currentHealth);
         AcquireTarget();
 
         if (!Alive()) {
@@ -132,6 +139,12 @@ public class Enemy : MonoBehaviour, IDamageable
     
     // Animation Event
     public void Attack() {
+        if (_target == null || !_receiver.Alive()) {
+            _enemyDetected = false;
+            _animator.SetBool(_attackHash, false);
+            return;
+        }
+
         if (Vector3.Distance(transform.position, _target.transform.position) < _data.AttackRange) {
             _receiver?.Damage(_data.Damage);
         }
