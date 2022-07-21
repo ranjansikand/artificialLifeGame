@@ -38,24 +38,28 @@
   <ItemGroup>
      <Compile Include="Assets\Player\PlayerInput.cs" />
      <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
-     <Compile Include="Assets\Scripts\BouncingItem.cs" />
+     <Compile Include="Assets\Scripts\Monsters\BouncingItem.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\UI\PlayerHearts.cs" />
      <Compile Include="Assets\Scripts\IDamageable.cs" />
-     <Compile Include="Assets\Scripts\Blueprint.cs" />
+     <Compile Include="Assets\Scripts\Monsters\Blueprint.cs" />
      <Compile Include="Assets\Scripts\UI\Slots.cs" />
      <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
-     <Compile Include="Assets\Scripts\Dummy.cs" />
-     <Compile Include="Assets\Scripts\ItemGenerator.cs" />
-     <Compile Include="Assets\Scripts\MonsterController.cs" />
+     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyGenerator.cs" />
+     <Compile Include="Assets\Scripts\Monsters\ItemGenerator.cs" />
+     <Compile Include="Assets\Scripts\UI\MonsterCounter.cs" />
+     <Compile Include="Assets\Scripts\UI\MonsterCard.cs" />
+     <Compile Include="Assets\Scripts\UI\Healthbar.cs" />
+     <Compile Include="Assets\Scripts\Monsters\MonsterController.cs" />
      <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
      <Compile Include="Assets\VFX\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
-     <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
      <Compile Include="Assets\Scripts\UI\MonsterSlot.cs" />
-     <Compile Include="Assets\Scripts\EnemyData.cs" />
-     <Compile Include="Assets\Scripts\MonsterData.cs" />
-     <Compile Include="Assets\Scripts\UI\Healthbar.cs" />
-     <Compile Include="Assets\Scripts\UI\Billboard.cs" />
-     <Compile Include="Assets\Scripts\UI\PlayerHearts.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyData.cs" />
+     <Compile Include="Assets\Scripts\Monsters\MonsterData.cs" />
+     <Compile Include="Assets\Scripts\Title\AudioManager.cs" />
+     <Compile Include="Assets\Scripts\Title\MenuManager.cs" />
      <None Include="Assets\VFX\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
      <None Include="Assets\VFX\Cartoon FX\CartoonFX Free.txt" />
      <None Include="Assets\VFX\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
@@ -629,9 +633,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{effa4177-facd-f5a9-4d9d-8b1c942a2e1d}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{3233dc20-c9ac-e45f-e814-00c488361b0d}</Project>
       <Name>Unity.VSCode.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{70d1c2cc-ea44-67f7-4769-3eb39f4ad8e3}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{c09807d6-4b7e-319e-f4fb-249c258f469a}</Project>

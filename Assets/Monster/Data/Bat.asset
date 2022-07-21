@@ -23,5 +23,5 @@ MonoBehaviour:
   _attackRange: 1.5
   _followDistance: 5
   _cooldown: 6
-  _spawnTime: 2
+  _spawnTime: 3.5
   _layer: 10

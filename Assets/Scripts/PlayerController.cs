@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     private CharacterController _characterController;
     private Animator _animator;
 
+    public delegate void PlayerEvent();
+    public static PlayerEvent monsterCreated;
+
     // Health
     int _currentHealth = 4;
 
@@ -26,6 +29,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     Blueprint _blueprint;
     int _selectedMonster = 0;
     
+    int _spawnedMonsters = 0;
+    const int _maxMonsters = 4;
     MonsterData[] _storedMonsters = new MonsterData[4];
 
     bool[] _monsterAvailable = { true, true, true, true };
@@ -52,6 +57,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         _playerInput.Player.Monster4.performed += SwitchMonster4;
         _playerInput.Player.Pickup.performed += OnPickup;
         _playerInput.Player.Spawn.performed += OnSpawn;
+
+        MonsterController.monsterDied += SubtractMonster;
     }
 
     private void Update() {
@@ -95,7 +102,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
 
     private void OnSpawn(InputAction.CallbackContext context) {
-        if (_usesLeft[_selectedMonster] > 0 && _monsterAvailable[_selectedMonster]) {
+        if (_usesLeft[_selectedMonster] > 0 && _monsterAvailable[_selectedMonster]
+            && _spawnedMonsters < _maxMonsters) {
             StartCoroutine(SpawnDelay());
             _usesLeft[_selectedMonster] -= 1;
         }
@@ -142,23 +150,27 @@ public class PlayerController : MonoBehaviour, IDamageable
     void Select(int number) {
         number--;
         _selectedMonster = number;
-        Debug.Log(number);
-        Slots.instance.SelectSlot(number);
+        Slots.instance.SelectSlot(number, _storedMonsters[_selectedMonster]);
     }
 
-    // Coroutines
+    // Coroutines to create or spawn monsters
     IEnumerator SpawnDelay() {
         FreezeMovement();
         _animator.SetBool(_spawnHash, true);
 
         int desiredMonsterIndex = _selectedMonster;  // In case user switches after spawn begins
+
+        // UI depiction and actual wait time
+        Slots.instance.CooldownSlot(desiredMonsterIndex, _storedMonsters[desiredMonsterIndex]._spawnTime);
         yield return new WaitForSeconds(_storedMonsters[desiredMonsterIndex]._spawnTime);
+
         Instantiate(_storedMonsters[desiredMonsterIndex]._monsterPrefab, 
             transform.position + transform.forward * 2, 
             Quaternion.identity);
         
         _animator.SetBool(_spawnHash, false);
         _canMove = true;
+        AddMonster();
         StartCoroutine(CooldownDelay(desiredMonsterIndex));
     }
 
@@ -178,6 +190,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         _monsterAvailable[monster] = true;
     }
 
+    // Damageable Interface for Combat
     public bool Alive() {
         return _currentHealth > 0;
     }
@@ -191,5 +204,16 @@ public class PlayerController : MonoBehaviour, IDamageable
             _canMove = false;
             _animator.SetBool("Dead", true);
         }
+    }
+
+    // Monster Tracking
+    void AddMonster() {
+        _spawnedMonsters += 1;
+        monsterCreated();
+        if (_spawnedMonsters > _maxMonsters) Debug.LogWarning("Too many monsters!");
+    }
+
+    void SubtractMonster() {
+        _spawnedMonsters = Mathf.Max(_spawnedMonsters - 1, 0);
     }
 }

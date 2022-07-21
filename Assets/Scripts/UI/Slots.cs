@@ -13,6 +13,8 @@ public class Slots : MonoBehaviour
     int _selectedHash;
     int _filledHash;
 
+    WaitForSeconds _delay = new WaitForSeconds(0.25f);
+
     void Awake() {
         instance = this;
 
@@ -29,19 +31,25 @@ public class Slots : MonoBehaviour
         if (data == null) {
             _slots[slot].Name.text = "";
             _slots[slot].Animator.SetBool(_filledHash, false);
+            _slots[slot].Card.DeselectCard();
         }
         else {
             _slots[slot].Animator.SetBool(_filledHash, true);
             _slots[slot].Name.text = data._monsterName;
+
+            _selectedSlot.Card.SaveData(data);
         }
     }
 
-    public void SelectSlot(int slot) {
+    public void SelectSlot(int slot, MonsterData data = null) {
         if (_selectedSlot != _slots[slot]) {
             // Switch this to animation
             _selectedSlot?.Animator.SetBool(_selectedHash, false);
+            _selectedSlot?.Card.DeselectCard();
             _selectedSlot = _slots[slot];
             _selectedSlot.Animator.SetBool(_selectedHash, true);
+
+            _selectedSlot.Card.SaveData(data);
         }
     }
 
