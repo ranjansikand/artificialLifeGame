@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] EnemyData _data;
 
+    public delegate void EnemyEvent();
+    public static EnemyEvent enemyDied;
+
     private Animator _animator;
     private NavMeshAgent _agent;
     private Healthbar _healthbar;
@@ -68,8 +71,8 @@ public class Enemy : MonoBehaviour, IDamageable
             else {
                 AcquireTarget();
                 
-                if (Random.Range(1, 5) > 3) {  // Prevent constant reassignment
-                    Vector2 rand = Random.insideUnitCircle * 3;
+                if (Random.Range(1.0f, 10f) > 8) {  // Prevent constant reassignment
+                    Vector2 rand = Random.insideUnitCircle * 10;
                     _agent.SetDestination(transform.position + new Vector3(rand.x, 0, rand.y));
                 }
             }
@@ -94,7 +97,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Vector3 b = a;
         b.y += 2f;
         int hits = Physics.OverlapCapsuleNonAlloc(
-            a, b, 5, targetsBuffer, _data.LayerMask);
+            a, b, 8.5f, targetsBuffer, _data.LayerMask);
         if (hits > 0) {
             for (int i = 0; i < hits; i++) {
                 _target = targetsBuffer[i].GetComponent<Collider>().gameObject;
@@ -131,6 +134,8 @@ public class Enemy : MonoBehaviour, IDamageable
             _agent.enabled = false;
             _target = null;
             _animator.SetBool(_deadHash, true);
+            enemyDied();
+            
             Invoke(nameof(DestroyThis), 1.5f);
         }
     }

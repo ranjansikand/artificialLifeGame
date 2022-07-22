@@ -12,13 +12,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public delegate void PlayerEvent();
     public static PlayerEvent monsterCreated;
+    public static PlayerEvent playerDied;
 
     // Health
     int _currentHealth = 4;
 
     // Movement
     bool _canMove = true;
-    float _walkSpeed = 4.25f;
+    float _walkSpeed = 5.25f;
     float _speedSmoothVelocity;
     Vector2 _currentMovementInput;
     Vector3 _appliedMovement;
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
 
     private void OnPickup(InputAction.CallbackContext context) {
-        if (_nearBlueprint && _monsterAvailable[_selectedMonster]) {
+        if (_nearBlueprint && _monsterAvailable[_selectedMonster] && _blueprint != null) {
             _storedMonsters[_selectedMonster] = _blueprint.Data;
             _usesLeft[_selectedMonster] = _blueprint.Uses;
 
@@ -202,6 +203,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         
         if (_canMove && _currentHealth <= 0) {
             _canMove = false;
+            _appliedMovement = Vector3.zero;
             _animator.SetBool("Dead", true);
         }
     }

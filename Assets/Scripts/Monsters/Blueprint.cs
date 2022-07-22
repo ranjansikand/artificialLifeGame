@@ -24,4 +24,10 @@ public class Blueprint : MonoBehaviour
         // Play particle effect
         Destroy(gameObject);
     }
+
+    private void Update() {
+        if (transform.position.y < -30) {
+            DestroyThis();
+        }
+    }
 }

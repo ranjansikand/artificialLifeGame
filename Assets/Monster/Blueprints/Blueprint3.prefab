@@ -144,7 +144,7 @@ MonoBehaviour:
   rotationX: 45
   rotationY: -20
   rotationZ: 35
-  floatStrength: 0.25
+  floatStrength: 0
 --- !u!1 &8542328496481620924
 GameObject:
   m_ObjectHideFlags: 0

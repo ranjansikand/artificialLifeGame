@@ -222,7 +222,7 @@ MonoBehaviour:
   rotationX: 45
   rotationY: -20
   rotationZ: 35
-  floatStrength: 0.25
+  floatStrength: 0
 --- !u!1001 &3976187222067535503
 PrefabInstance:
   m_ObjectHideFlags: 0

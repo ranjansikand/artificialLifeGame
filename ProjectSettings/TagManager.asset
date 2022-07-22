@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FxTemporaire
   - Volume
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

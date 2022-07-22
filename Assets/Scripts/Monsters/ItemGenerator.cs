@@ -34,11 +34,11 @@ public class ItemGenerator : MonoBehaviour
         while (true) {
             Vector3 randomPos = new Vector3(
                 Random.Range(_corners[0].x, _corners[1].x), 
-                0,
+                3,
                 Random.Range(_corners[0].y, _corners[1].y)
             );
 
-            if (Physics.Raycast(randomPos + transform.up*10, Vector3.down, 12.5f)) {
+            if (Physics.Raycast(randomPos + transform.up*10, Vector3.down, 15f)) {
                 yield return new WaitForSeconds(Random.Range(_spawnInterval.x, _spawnInterval.y));
                 GenerateBlueprint(randomPos);
             }

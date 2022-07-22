@@ -6,9 +6,11 @@ using UnityEngine.AI;
 public class MonsterController : MonoBehaviour, IDamageable
 {
     [SerializeField] MonsterData _data;
+    [SerializeField] AudioClip _attackSound;
 
     NavMeshAgent _agent;
     Animator _animator;
+    AudioSource _audioSource;
     Healthbar _healthbar;
 
     GameObject _target;
@@ -114,6 +116,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     // Called from animation event
     public void Attack() {
         _receiver.Damage(_data._damage);
+        _audioSource.PlayOneShot(_attackSound, AudioManager.MasterVolume);
     }
 
     public void Damage(float damage) {
